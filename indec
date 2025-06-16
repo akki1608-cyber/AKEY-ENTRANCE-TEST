@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akey Entrance Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      animation: fadeIn 2s ease-in;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+
+    .typing-text {
+      color: #00e6e6;
+      font-weight: 600;
+      font-size: 1.5rem;
+      margin: 30px auto;
+      text-align: center;
+      height: 30px;
+    }
+
+    .info-section {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    .info-section img {
+      width: 180px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      animation: zoomIn 1s ease-out;
+    }
+
+    .info-section p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: #ddd;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .btn {
+      margin: 15px;
+      padding: 15px 30px;
+      background: #00e6e6;
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: 0.3s;
+      box-shadow: 0 0 15px #00e6e6;
+      display: inline-block;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: #00e6e6;
+      border: 2px solid #00e6e6;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px #00e6e6, 0 0 20px #00e6e6; }
+      to { text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff; }
+    }
+
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      .btn {
+        padding: 12px 20px;
+      }
+      .info-section img {
+        width: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1 data-aos="zoom-in">🧠 Akey Entrance Test</h1>
+  <p>“Not your marks, your mind matters.”</p>
+</header>
+
+<div class="typing-text" id="typing-text"></div>
+
+<section class="info-section" data-aos="fade-up">
+  <img src="https://i.ibb.co/g9D7qKq/akey-logo.png" alt="Akey Logo" />
+  <p>
+    <strong>Akey Entrance Test</strong> is a real-life, scenario-based test designed to evaluate logical reasoning, presence of mind, emotional intelligence, and smart decision-making — beyond academic performance.
+    <br><br>
+    The exam happens in <strong>4 Rounds</strong>, increasing in difficulty. Round 1 has two parts: <strong>MCQ (Stage 1)</strong> and <strong>Typing Case Answers (Stage 2)</strong>. After this, candidates face an <strong>Objection Round</strong> — more complex and critical.
+  </p>
+</section>
+
+<div class="container" data-aos="fade-up">
+  <a href="login.html" class="btn">Login / Register</a>
+  <a href="test.html" class="btn">Take Test</a>
+  <a href="result-login.html" class="btn">Check Result</a>
+</div>
+
+<footer>
+  &copy; 2025 Akey Entrance Test | Designed to Unlock Real Intelligence
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+
+  const typingText = document.getElementById("typing-text");
+  const phrases = [
+    "Evaluate Real-Life Intelligence...",
+    "Challenge Your Mind with Case Studies...",
+    "Critical Thinking Over Cramming!",
+    "Are You Aware, Logical, Smart?",
+    "Only the Best Minds Make It Through!"
+  ];
+  let i = 0, j = 0, current = "", isDeleting = false;
+  function type() {
+    if (i < phrases.length) {
+      if (!isDeleting && j <= phrases[i].length) {
+        current = phrases[i].substring(0, j++);
+        typingText.innerHTML = current;
+      } else if (isDeleting && j >= 0) {
+        current = phrases[i].substring(0, j--);
+        typingText.innerHTML = current;
+      }
+      if (j === phrases[i].length + 10) isDeleting = true;
+      if (j === 0 && isDeleting) {
+        isDeleting = false;
+        i = (i + 1) % phrases.length;
+      }
+    }
+    setTimeout(type, isDeleting ? 50 : 100);
+  }
+  type();
+</script>
+
+</body>
+</html>
